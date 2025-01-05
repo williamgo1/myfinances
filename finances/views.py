@@ -6,4 +6,5 @@ from django.contrib.auth import get_user_model
 class HomePageView(ListView):
     model = get_user_model()
     template_name = 'finances/index.html'
+    extra_context = {'title': 'Главная страница'}
 
