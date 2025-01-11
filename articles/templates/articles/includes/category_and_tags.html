@@ -1,0 +1,12 @@
+<div>Категория: <a class='tags-category' href="#">{{ article.category }}</a></div>
+
+<div>Теги:
+    {% for tag in article.tags.all %}
+        {% if not forloop.last %}
+            <a class='tags-category' href="#">{{ tag.name }}</a>
+            <p class="tag-delemiter">|</p>
+        {% else %}
+            <a class='tags-category' href="#">{{ tag.name }}</a>
+        {% endif %}
+    {% endfor %}
+</div>

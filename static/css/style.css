@@ -1,1 +1,71 @@
+a:hover {
+    color: darkred;
+}
+section {
+    min-height: 500px;
+}
+.form-p {
+    display: inline-block;
+    min-width: 120px;
+    margin-right: 5px;
+}
+.confirm-form-p {
+    display: inline-block;
+    min-width: 250px;
+    margin-right: 5px;
+}
+
+/* Навбар */
+.navbar-nav a {
+    color: var(--bs-white);
+}
+
+/* Футер */
+footer {
+    background-color: var(--bs-dark-bg-subtle);
+    margin-top: 50px;
+    padding: 20px 0;
+}
+
+/* Авторизация и регистрация */
+.line1 {
+    width: 300px;
+    height: 1px;
+    background-color: var(--bs-gray);
+    margin: 20px auto 10px;
+}
+.form-error ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: red;
+}
+
+/* О сайте */
+.accordion-width {
+    width: 700px;
+    margin: 0 auto;
+}
+
+/* Статья */
+.article-img {
+    width: 300px;
+    height: 300px;
+    border-radius: 10%;
+    border: 3px solid lightgray;
+}
+
+/* Список статей */
+.tag-delemiter {
+    display: inline;
+}
+.tags-category {
+    text-decoration: none;
+}
+.article-img-mini {
+    border-radius: 20%;
+    border: 3px solid lightgray;
+    width: 80px;
+    height: 80px;
+}
 

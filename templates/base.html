@@ -9,38 +9,56 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="icon" href=" {% static 'img/favicon.svg' %}" sizes="any">
 </head>
-<body class="bg-dark-subtle">
-  
-    {% comment %} Начало авигационной панели {% endcomment %}
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'home' %}">Главная страница</a>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+<body>
+{% comment %} Начало авигационной панели {% endcomment %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-3">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}"><img src="{%static 'img/favicon.ico' %}" alt=""></a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-link" href="#">Мои статьи</a>
-              <a class="nav-link" href="#">Добавить статью</a>
-              {% if user.is_authenticated %}
-              <a class="nav-link" href="{% url "users:profile" %}">{{ user.username }}</a>
-              <a class="nav-link" href="{% url "users:logout" %}">Выйти</a>
-              {% else %}
-              <a class="nav-link" href="{% url "users:login" %}">Вход</a>
-              <a class="nav-link" href="{% url "users:registration" %}">Регистрация</a>
-              {% endif %}
+                <a class="nav-link" href="{% url "about" %}">О сайте</a>
+                <a class="nav-link" href="{% url "articles:article_list" %}">Все статьи</a>
+                <a class="nav-link" href="#">Мои статьи</a>
+                <a class="nav-link" href="{% url "articles:create_article" %}">Создать статью</a>
+                <a class="nav-link" href="#">Калькулятор</a>
             </div>
-          </div>
         </div>
-    </nav>
-      {% comment %} Конец авигационной панели {% endcomment %}
 
-    {% block content %}{% endblock content %}
+        <div class="navbar-nav">
+            {% if user.is_authenticated %}
+                <a class="nav-link" href="{% url "users:profile" %}">{{ user.username }}</a>
+                <a class="nav-link" href="{% url "users:logout" %}">Выйти</a>
+            {% else %}
+                <a class="nav-link text-right" href="{% url "users:login" %}">Вход</a>
+                <a class="nav-link text-right" href="{% url "users:registration" %}">Регистрация</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+{% comment %} Конец авигационной панели {% endcomment %}
 
-    {% comment %} <footer>
-        <ul>
-            <li>О сайте</li>
-            <li>Предложения по улучшению сайта</li>
-            <li>Обо мне</li>
-        </ul>
-    </footer> {% endcomment %}
-    <script type="text/javascript" src={% static "js/bootstrap.bundle.min.js" %}></script>
+{% block content %}{% endblock content %}
+
+{% comment %} Начало футера {% endcomment %}
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                Тут могла быть ваша реклама
+            </div>
+
+            <div class="col-4">
+                Далеко-далеко за словесными, горами в стране гласных и согласных живут рыбные тексты. Залетают если гор дорогу толку назад образ жизни первую повстречался?
+            </div>
+
+            <div class="col-4">
+                Далеко-далеко, за словесными горами в стране гласных и согласных живут рыбные тексты. Пустился маленький семь по всей подзаголовок жаренные живет, проектах залетают рот!
+            </div>
+        </div>
+    </div>
+</footer>
+{% comment %} Конец футера {% endcomment %}
+
+<script type="text/javascript" src={% static "js/bootstrap.bundle.min.js" %}></script>
 </body>
 </html>

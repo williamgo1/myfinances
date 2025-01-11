@@ -1,12 +1,24 @@
 {% extends "base.html" %}
 
-{% block head_title %}<title>{{ title }}</title>{% endblock head_title %}
+{% block head_title %}
+<title>{{ title }}</title>
+{% endblock head_title %}
 
 {% block content %}
-    <h1>{{ title }}</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Зарегистироваться</button>
-    </form>
+<section>
+<div class="container">
+    {% include "includes/header.html" %}
+
+    <div class="row">
+        <div class="col-12 text-center">
+            <form action="" method="post">
+                {% include "includes/post_form.html" %}
+                <button class="btn btn-primary mt-3" type="submit">Зарегистироваться</button>
+            </form>
+            <div class="line1"></div>
+            <a href="{% url "users:login" %}">Уже есть аккаунт?</a>
+        </div>
+    </div>
+</div>
+</section>
 {% endblock content %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% block head_title %}
+<title>{{ title }}</title>
+{% endblock head_title %}
+
+
+{% block content %}
+<section>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            {% include "articles/includes/category_and_tags.html" %}
+            <h1 class='mb-3 text-center'>{{ article.title }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p>{{ article.content|linebreaks }}</p>
+        </div>
+    </div>
+</div>
+</section>
+{% endblock content %}

@@ -5,8 +5,8 @@ from django.contrib.auth import get_user_model
 
 class UserCreateForm(UserCreationForm):
     username = forms.CharField(label='Логин*')
-    password1 = forms.CharField(label='Придумайте пароль*', widget=forms.PasswordInput())
-    password2 = forms.CharField(label='Повторите пароль*', widget=forms.PasswordInput())
+    password1 = forms.CharField(label='Пароль*', widget=forms.PasswordInput())
+    password2 = forms.CharField(label='Повтор пароля*', widget=forms.PasswordInput())
     email = forms.EmailField(label='E-mail*')
     class Meta:
         model = get_user_model()
@@ -41,4 +41,4 @@ class UserProfileForm(forms.ModelForm):
 class UserPasswordChangeForm(PasswordChangeForm):
     old_password = forms.CharField(label='Старый пароль', widget=forms.PasswordInput())
     new_password1 = forms.CharField(label='Новый пароль', widget=forms.PasswordInput())
-    new_password2 = forms.CharField(label='Подтверждение пароля', widget=forms.PasswordInput())
+    new_password2 = forms.CharField(label='Повтор пароля', widget=forms.PasswordInput())

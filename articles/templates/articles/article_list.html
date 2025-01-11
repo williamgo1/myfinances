@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+
+{% block head_title %}
+    <title>{{ title }}</title>
+{% endblock head_title %}
+
+
+{% block content %}
+<section>
+<div class="container">
+    {% include "includes/header.html" %}
+
+    {% comment %} Начало списка статей {% endcomment %}
+    <div class="row">
+        <div class="col-12">
+            {% for article in articles %}
+                {% include "articles/includes/category_and_tags.html" %}
+                
+                <h4 class="mt-2">{{ article.title|truncatewords:15 }}</h4>
+
+                <p>{{ article.content|truncatewords:40 }}</p>
+
+                <a href="{{ article.get_absolute_url }}">
+                    <button class="btn btn-primary mt-1" type="button">Читать статью</button>
+                </a>
+
+                {% if not forloop.last %}
+                    <hr>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% comment %} Конец списка статей {% endcomment %}
+</div>
+</section>
+{% endblock content %}
