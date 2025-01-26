@@ -2,7 +2,7 @@ a:hover {
     color: darkred;
 }
 section {
-    min-height: 500px;
+    min-height: 570px;
 }
 .form-p {
     display: inline-block;
@@ -22,7 +22,6 @@ section {
 
 /* Футер */
 footer {
-    background-color: var(--bs-dark-bg-subtle);
     margin-top: 50px;
     padding: 20px 0;
 }
@@ -36,8 +35,7 @@ footer {
 }
 .form-error ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
+    margin: 0 auto 10px;
     color: red;
 }
 
@@ -55,11 +53,19 @@ footer {
     border: 3px solid lightgray;
 }
 
+/* Создание статьи */
+.create-article {
+    width: 550px;
+    margin: 0 auto;
+    padding-left: 50px;
+    text-align: left;
+}
+
 /* Список статей */
 .tag-delemiter {
     display: inline;
 }
-.tags-category {
+.a-underscore {
     text-decoration: none;
 }
 .article-img-mini {

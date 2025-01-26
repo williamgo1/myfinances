@@ -48,7 +48,7 @@ class Article(models.Model):
     photo = models.ImageField(upload_to="photos/%Y/%m/", blank=True, null=True, verbose_name='Фото статьи')
     time_create = models.DateTimeField(auto_now=True, verbose_name='Время создания') # DateInput.
     time_update = models.DateTimeField(auto_now_add=True, verbose_name='Время изменения')
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True, max_length=100, 
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, max_length=100, 
                                  related_name= 'articles', verbose_name='Категория')
     status = models.SmallIntegerField(choices=STATUS_CHOICES, default=DRAFT_STATUS, verbose_name='Статус')
     tags = TaggableManager(blank=True, verbose_name='Теги')

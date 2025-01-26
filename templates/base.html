@@ -13,25 +13,40 @@
 {% comment %} Начало авигационной панели {% endcomment %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-3">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home' %}"><img src="{%static 'img/favicon.ico' %}" alt=""></a>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link" href="{% url "about" %}">О сайте</a>
-                <a class="nav-link" href="{% url "articles:article_list" %}">Все статьи</a>
-                <a class="nav-link" href="#">Мои статьи</a>
-                <a class="nav-link" href="{% url "articles:create_article" %}">Создать статью</a>
-                <a class="nav-link" href="#">Калькулятор</a>
-            </div>
-        </div>
+        <a class="navbar-brand" href="{% url 'home' %}"><img src="{%static 'img/favicon.ico' %}" alt="Логотип"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "about" %}">О сайте</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "articles:article_list" %}">Все статьи</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Калькулятор</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Профиль
+                    </a>
+                    <ul class="dropdown-menu bg-dark">
+                        <li><a class="dropdown-item" href="{% url "articles:create_article" %}">Создать статью</a></li>
+                        <li><a class="dropdown-item" href="{% url "articles:my_articles" %}">Мои статьи</a></li>
+                        <li><hr class="dropdown-divider bg-white"></li>
 
-        <div class="navbar-nav">
-            {% if user.is_authenticated %}
-                <a class="nav-link" href="{% url "users:profile" %}">{{ user.username }}</a>
-                <a class="nav-link" href="{% url "users:logout" %}">Выйти</a>
-            {% else %}
-                <a class="nav-link text-right" href="{% url "users:login" %}">Вход</a>
-                <a class="nav-link text-right" href="{% url "users:registration" %}">Регистрация</a>
-            {% endif %}
+                        {% if user.is_authenticated %}
+                            <li><a class="dropdown-item" href="{% url "users:profile" %}">{{ user.username }}</a></li>
+                            <li><a class="dropdown-item" href="{% url "users:logout" %}">Выйти</a></li>
+                        {% else %}
+                            <li><a class="dropdown-item" href="{% url "users:login" %}">Вход</a></li>
+                            <li><a class="dropdown-item" href="{% url "users:registration" %}">Регистрация</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
@@ -40,18 +55,18 @@
 {% block content %}{% endblock content %}
 
 {% comment %} Начало футера {% endcomment %}
-<footer>
+<footer class="text-bg-dark">
     <div class="container">
         <div class="row">
-            <div class="col-4">
-                Тут могла быть ваша реклама
+            <div class="col-lg-4 col-sm-6 mb-3">
+                Далеко-далеко за словесными горами в стране гласных и согласных живут, рыбные тексты. Текста буквоград грамматики, путь скатился обеспечивает рыбными подпоясал прямо запятых речью lorem правилами послушавшись рыбного щеке?
             </div>
 
-            <div class="col-4">
+            <div class="col-lg-4 col-sm-6 mb-3">
                 Далеко-далеко за словесными, горами в стране гласных и согласных живут рыбные тексты. Залетают если гор дорогу толку назад образ жизни первую повстречался?
             </div>
 
-            <div class="col-4">
+            <div class="col-lg-4 col-sm-6 mb-3">
                 Далеко-далеко, за словесными горами в стране гласных и согласных живут рыбные тексты. Пустился маленький семь по всей подзаголовок жаренные живет, проектах залетают рот!
             </div>
         </div>

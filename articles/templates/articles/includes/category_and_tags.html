@@ -1,12 +1,23 @@
-<div>Категория: <a class='tags-category' href="#">{{ article.category }}</a></div>
+<div class="row">
+    <div class="col-6">
+        Категория: <a class='a-underscore' href="{% url "articles:category" article.category.slug %}">
+        {{ article.category }}</a>
+    </div>
 
-<div>Теги:
-    {% for tag in article.tags.all %}
-        {% if not forloop.last %}
-            <a class='tags-category' href="#">{{ tag.name }}</a>
-            <p class="tag-delemiter">|</p>
-        {% else %}
-            <a class='tags-category' href="#">{{ tag.name }}</a>
-        {% endif %}
-    {% endfor %}
+    <div class="col-6 text-end">
+        Автор: <span class="text-primary">{{ article.author }}</span>
+    </div>
 </div>
+
+{% if article.tags.all %}
+    <div>Теги:
+        {% for tag in article.tags.all %}
+            {% if not forloop.last %}
+                <a class='a-underscore' href="#">{{ tag.name }}</a>
+                <p class="tag-delemiter">|</p>
+            {% else %}
+                <a class='a-underscore' href="#">{{ tag.name }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}

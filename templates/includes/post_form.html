@@ -1,7 +1,7 @@
 {% csrf_token %}
 <div class="form-error">{{ form.non_field_errors }}</div>
-{% for f in form %}
-    <p class="form-p text-end">{{ f.label }}</p>
-    {{ f }}
-    <div class="form-error">{{ f.errors }}</div>
+{% for field in form %}
+    <p class="form-p text-end">{{ field.label }}:</p>
+    {{ field }}
+    <br>
 {% endfor %}

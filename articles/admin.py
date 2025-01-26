@@ -22,4 +22,8 @@ class ArticlesAdmin(admin.ModelAdmin):
         return "Без фото"
 
 
-admin.site.register(Category)
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'slug']
+    list_display_links = ['name']
+    readonly_fields = ['slug']

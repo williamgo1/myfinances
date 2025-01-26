@@ -1,17 +1,15 @@
-from django.views.generic import ListView, CreateView, UpdateView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import ArticleCreateForm
 from .models import Article
-from django.contrib.auth import get_user_model, logout
-from django.urls import reverse_lazy, reverse
-from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponse
 
 
 class ArticleListView(ListView):
     extra_context = {'title': 'Все статьи'}
     template_name = 'articles/article_list.html'
     context_object_name = 'articles'
+    paginate_by = 5
 
     def get_queryset(self):
         return Article.published.all()
@@ -31,14 +29,30 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
     extra_context = {'title': 'Создание статьи'}
 
     def form_valid(self, form):
-        w = form.save(commit=False)
-        w.author = self.request.user
+        obj = form.save(commit=False)
+        obj.author = self.request.user
         return super().form_valid(form)
 
 
-class ArticleUpdateView(UpdateView):
-    pass
+class ArticleUpdateView(LoginRequiredMixin, UpdateView):
+    model = Article
+    template_name = 'articles/edit_article.html'
+    extra_context = {'title': 'Редактирование статьи'}
+    fields = ["title", "content", "photo", "category", "status", "tags"]
 
 
-class MyArticleListlView(ListView):
+class ArticleDeleteView(LoginRequiredMixin, DeleteView):
+    model = Article
+    template_name = "articles/delete_article.html"
+    extra_context = {'title': 'Удаление статьи'}
+    success_url = reverse_lazy("articles:article_list")
+
+
+class MyArticleListlView(LoginRequiredMixin, ListView):
+    extra_context = {'title': 'Мои статьи'}
     template_name = 'articles/article_list.html'
+    context_object_name = 'articles'
+    paginate_by = 5
+
+    def get_queryset(self):
+        return Article.objects.filter(author = self.request.user)

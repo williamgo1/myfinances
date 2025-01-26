@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
+
 {% block head_title %}
-    <title>{{ title }}</title>
+<title>{{ title }}</title>
 {% endblock head_title %}
+
 
 {% block content %}
 <section>
@@ -12,11 +14,9 @@
     <div class="row">
         <div class="col-12 text-center">
             <form action="" method="post">
-                {% include "includes/post_form.html" %}
-                <button class="btn btn-primary mt-2" type="submit">Войти</button>
+                {% csrf_token %}
+                <button class="btn btn-danger mt-2" type="submit">Удалить статью</button>
             </form>
-            <div class="line1"></div>
-            <a href="{% url "users:password_reset" %}">Забыли пароль?</a>
         </div>
     </div>
 </div>

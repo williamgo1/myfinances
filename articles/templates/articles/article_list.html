@@ -12,26 +12,78 @@
     {% include "includes/header.html" %}
 
     {% comment %} Начало списка статей {% endcomment %}
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-12">
-            {% for article in articles %}
-                {% include "articles/includes/category_and_tags.html" %}
-                
-                <h4 class="mt-2">{{ article.title|truncatewords:15 }}</h4>
+            {% if not articles %}
+                <h2 class="text-center">Вы не создали ни одной статьи</h2>
+            {% else %}
+                {% for article in articles %}
+                    {% include "articles/includes/category_and_tags.html" %}
+                    
+                    <h4 class="mt-2">{{ article.title|truncatewords:15 }}</h4>
 
-                <p>{{ article.content|truncatewords:40 }}</p>
+                    <p>{{ article.content|truncatewords:40 }}</p>
 
-                <a href="{{ article.get_absolute_url }}">
-                    <button class="btn btn-primary mt-1" type="button">Читать статью</button>
-                </a>
+                    <a href="{{ article.get_absolute_url }}" class="a-underscore btn btn-primary mt-1">
+                        Читать статью
+                    </a>
 
-                {% if not forloop.last %}
-                    <hr>
-                {% endif %}
-            {% endfor %}
+                    {% if article.author.username == user.username %}
+                        <a href="{% url "articles:edit_article" article.slug %}" class="a-underscore btn btn-secondary mt-1">
+                            Редактировать
+                        </a>
+                        <a href="{% url "articles:delete_article" article.slug %}" class="a-underscore btn btn-danger mt-1">
+                            Удалить статью
+                        </a>
+                    {% endif %}
+
+                    {% if not forloop.last %}
+                        <hr>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            
         </div>
     </div>
     {% comment %} Конец списка статей {% endcomment %}
+
+    {% if page_obj.has_other_pages %}
+        <div class="row">
+            <div class="col-12">
+                {% comment %} Начало пагинации {% endcomment %}
+                <nav aria-label="Навигация по страницам">
+                    <ul class="pagination justify-content-center">
+                        {% if page_obj.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page=1">Первая</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Предыдущая">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.number|add:"-1" }}</a>
+                        </li>
+                        {% endif %}
+                        
+                        <li class="page-item disabled"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
+
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.number|add:"1" }}</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Следующая">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                        <li><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Последняя</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                {% comment %} Начало пагинации {% endcomment %}
+            </div>
+        </div>
+    {% endif %}
 </div>
 </section>
 {% endblock content %}
